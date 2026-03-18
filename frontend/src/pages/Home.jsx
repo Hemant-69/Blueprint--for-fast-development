@@ -2,8 +2,18 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import {
   HiArrowRight, HiAcademicCap, HiLightningBolt, HiShieldCheck, HiCog,
-  HiChevronRight, HiStar, HiTrendingUp, HiUsers, HiBriefcase,
+  HiChevronRight, HiStar, HiUsers, HiBriefcase, HiPhotograph,
 } from 'react-icons/hi';
+
+// Real gallery images from public folder
+const galleryImages = [
+  { src: '/images/kriti1.jpg', label: 'Kriti Cultural Fest' },
+  { src: '/images/Sports26_1.jpg', label: 'Annual Sports Meet' },
+  { src: '/images/NSS21_I.jpeg', label: 'NSS Camp' },
+  { src: '/images/Sports26_2.jpg', label: 'Sports Week' },
+  { src: '/images/kriti5.jpg', label: 'Cultural Performances' },
+  { src: '/images/NSS21_II.jpeg', label: 'NSS Activities' },
+];
 
 const stats = [
   { value: '2,500+', label: 'Students Enrolled', icon: <HiUsers /> },
@@ -84,121 +94,152 @@ const Home = () => {
 
       {/* ─── HERO ─────────────────────────────────────────── */}
       <section
-        className="relative overflow-hidden"
-        style={{ minHeight: 'calc(100vh - 6.5rem)', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
-      >
-        {/* Background glow */}
-        <div style={{
-          position: 'absolute', inset: 0,
-          background: 'radial-gradient(ellipse 70% 50% at 50% -10%, rgba(220,38,38,0.12) 0%, transparent 65%)',
-          pointerEvents: 'none',
-        }} />
-        {/* Side glow */}
-        <div style={{
-          position: 'absolute', right: '-10%', top: '20%',
-          width: '400px', height: '400px', borderRadius: '50%',
-          background: 'rgba(220,38,38,0.05)', filter: 'blur(60px)',
-          pointerEvents: 'none',
-        }} />
+  className="relative overflow-hidden"
+  style={{
+    minHeight: 'calc(100vh - 6.5rem)',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+    /* ✅ BACKGROUND IMAGE */
+    backgroundImage: `url(/Bg.jpg)`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+  }}
+>
 
-            {/* Left */}
-            <div className="animate-fade-in-up">
-              <div className="badge mb-6">
-                🎓 Established 1954 • AICTE Approved
-              </div>
+  {/* ✅ DARK OVERLAY (for readability) */}
+  <div
+    style={{
+      position: 'absolute',
+      inset: 0,
+      background: 'rgba(0,0,0,0.55)',
+      zIndex: 0,
+    }}
+  />
 
-              <h1 style={{
-                fontSize: 'clamp(2rem, 5vw, 3.5rem)',
-                fontWeight: '900',
-                lineHeight: '1.1',
-                color: 'var(--text-primary)',
-                marginBottom: '1.25rem',
-              }}>
-                State Institute of<br />
-                <span className="gradient-text">Engineering & Technology</span>
-              </h1>
+  {/* Background glow */}
+  <div style={{
+    position: 'absolute', inset: 0,
+    background: 'radial-gradient(ellipse 70% 50% at 50% -10%, rgba(220,38,38,0.12) 0%, transparent 65%)',
+    pointerEvents: 'none',
+    zIndex: 0,
+  }} />
 
-              <p style={{
-                fontSize: '1.1rem',
-                color: 'var(--text-secondary)',
-                lineHeight: '1.7',
-                marginBottom: '0.75rem',
-              }}>
-                राज्य अभियांत्रिकी एवं प्रौद्योगिकी संस्थान, निलोखेड़ी (करनाल)
-              </p>
-              <p style={{
-                fontSize: '0.95rem',
-                color: 'var(--text-muted)',
-                lineHeight: '1.7',
-                marginBottom: '2rem',
-              }}>
-                Empowering minds with knowledge, innovation & excellence. Shaping engineers who lead tomorrow's world.
-              </p>
+  {/* Side glow */}
+  <div style={{
+    position: 'absolute', right: '-10%', top: '20%',
+    width: '400px', height: '400px', borderRadius: '50%',
+    background: 'rgba(220,38,38,0.05)', filter: 'blur(60px)',
+    pointerEvents: 'none',
+    zIndex: 0,
+  }} />
 
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
-                <Link to="/admissions" className="btn-primary" style={{ textDecoration: 'none' }}>
-                  Apply Now <HiArrowRight />
-                </Link>
-                <Link to="/departments" className="btn-outline" style={{ textDecoration: 'none' }}>
-                  Explore Departments <HiChevronRight />
-                </Link>
-              </div>
+  {/* ✅ CONTENT ABOVE IMAGE */}
+  <div
+    className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16"
+    style={{ position: 'relative', zIndex: 1 }}
+  >
+    <div className="grid lg:grid-cols-2 gap-12 items-center">
 
-              {/* Live notice ticker */}
-              <div
-                className="mt-8"
-                style={{
-                  display: 'flex', alignItems: 'center', gap: '0.75rem',
-                  padding: '0.6rem 1rem',
-                  background: 'rgba(220,38,38,0.08)',
-                  border: '1px solid rgba(220,38,38,0.2)',
-                  borderRadius: '0.75rem',
-                }}
-              >
-                <span
-                  style={{
-                    background: 'var(--accent)', color: 'white',
-                    fontSize: '0.65rem', fontWeight: '700',
-                    padding: '0.2rem 0.5rem', borderRadius: '0.25rem',
-                    letterSpacing: '0.05em',
-                  }}
-                >
-                  LIVE
-                </span>
-                <span style={{ color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
-                  📢 Admissions Open 2026–27 — Last Date: 30 April 2026
-                </span>
-              </div>
-            </div>
-
-            {/* Right — Stats Grid */}
-            <div className="grid grid-cols-2 gap-4 animate-fade-in-up delay-200">
-              {stats.map((s, i) => (
-                <div key={i} className="stat-block">
-                  <div
-                    style={{
-                      width: '2.5rem', height: '2.5rem', borderRadius: '0.75rem',
-                      background: 'var(--accent-glow)',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      color: 'var(--accent-light)', fontSize: '1.2rem',
-                      margin: '0 auto 0.75rem',
-                    }}
-                  >
-                    {s.icon}
-                  </div>
-                  <div className="stat-number">
-                    <Counter target={s.value} />
-                  </div>
-                  <div className="stat-label">{s.label}</div>
-                </div>
-              ))}
-            </div>
-          </div>
+      {/* Left */}
+      <div className="animate-fade-in-up">
+        <div className="badge mb-6 inline-flex items-center gap-2 px-3 py-1" style={{ background: 'rgba(255,255,255,0.15)', color: 'white', fontSize: '0.75rem', fontWeight: '600' }}>
+          🎓 Established 2016 • AICTE Approved
         </div>
-      </section>
+
+        <h1 style={{
+          fontSize: 'clamp(2rem, 5vw, 3.5rem)',
+          fontWeight: '900',
+          lineHeight: '1.1',
+          color: 'white',
+          marginBottom: '1.25rem',
+        }}>
+          State Institute of<br />
+          <span className="gradient-text">Engineering & Technology</span>
+        </h1>
+
+        <p style={{
+          fontSize: '1.1rem',
+          color: 'white',
+          lineHeight: '1.7',
+          marginBottom: '0.75rem',
+        }}>
+          राज्य अभियांत्रिकी एवं प्रौद्योगिकी संस्थान, निलोखेड़ी (करनाल)
+        </p>
+
+        <p style={{
+          fontSize: '0.95rem',
+          color: 'white',
+          lineHeight: '1.7',
+          marginBottom: '2rem',
+        }}>
+          Empowering minds with knowledge, innovation & excellence. Shaping engineers who lead tomorrow's world.
+        </p>
+
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
+          <Link to="/admissions" className="btn-primary" style={{ textDecoration: 'none' }}>
+            Apply Now <HiArrowRight />
+          </Link>
+          <Link to="/departments" className="btn-outline" style={{ color: 'white', borderColor: 'rgba(255,255,255,0.5)', textDecoration: 'none' }}>
+            Explore Departments <HiChevronRight />
+          </Link>
+        </div>
+
+        {/* Live notice ticker */}
+        <div
+          className="mt-8"
+          style={{
+            display: 'flex', alignItems: 'center', gap: '0.75rem',
+            padding: '0.6rem 1rem',
+            background: 'rgba(220,38,38,0.08)',
+            border: '1px solid rgba(220,38,38,0.2)',
+            borderRadius: '0.75rem',
+          }}
+        >
+          <span
+            style={{
+              background: 'var(--accent)', color: 'white',
+              fontSize: '0.65rem', fontWeight: '700',
+              padding: '0.2rem 0.5rem', borderRadius: '0.25rem',
+              letterSpacing: '0.05em',
+            }}
+          >
+            LIVE
+          </span>
+          <span style={{ color: 'white', fontSize: '0.85rem' }}>
+            📢 Admissions Open 2026–27 — Last Date: 30 April 2026
+          </span>
+        </div>
+      </div>
+
+      {/* Right — Stats Grid */}
+      <div className="grid grid-cols-2 gap-4 animate-fade-in-up delay-200">
+        {stats.map((s, i) => (
+          <div key={i} className="stat-block">
+            <div
+              style={{
+                width: '2.5rem', height: '2.5rem', borderRadius: '0.75rem',
+                background: 'var(--accent-glow)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                color: 'var(--accent-light)', fontSize: '1.2rem',
+                margin: '0 auto 0.75rem',
+              }}
+            >
+              {s.icon}
+            </div>
+            <div className="stat-number">
+              <Counter target={s.value} />
+            </div>
+            <div className="stat-label">{s.label}</div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </div>
+</section>
 
       {/* ─── DEPARTMENTS ───────────────────────────────────── */}
       <section style={{ padding: '5rem 0', background: 'var(--bg-secondary)' }}>

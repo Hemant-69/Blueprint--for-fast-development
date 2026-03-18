@@ -144,7 +144,7 @@ const Navbar = () => {
               {/* Mobile Hamburger */}
               <button
                 onClick={() => setOpen(!open)}
-                className="md:hidden theme-toggle"
+                className="md:hidden  theme-toggle"
               >
                 {open ? <HiX size={18} /> : <HiMenuAlt3 size={18} />}
               </button>
