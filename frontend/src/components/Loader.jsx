@@ -25,7 +25,7 @@ export default function Loader({ onDone }) {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        background: 'linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%)',
+        background: 'white',
         transition: 'opacity 0.6s ease, visibility 0.6s ease',
         opacity: fadeOut ? 0 : 1,
         visibility: fadeOut ? 'hidden' : 'visible',
@@ -49,32 +49,7 @@ export default function Loader({ onDone }) {
 
       {/* Logo / Brand mark */}
       <div style={{ position: 'relative', marginBottom: 32 }}>
-        {/* Spinning ring */}
-        <div style={{
-          width: 80, height: 80,
-          border: '3px solid rgba(99,102,241,0.2)',
-          borderTopColor: '#6366f1',
-          borderRadius: '50%',
-          animation: 'spin 1s linear infinite',
-        }} />
-        {/* Inner accent ring */}
-        <div style={{
-          position: 'absolute', inset: 10,
-          border: '2px solid rgba(6,182,212,0.3)',
-          borderBottomColor: '#06b6d4',
-          borderRadius: '50%',
-          animation: 'spin 0.75s linear infinite reverse',
-        }} />
-        {/* Center dot */}
-        <div style={{
-          position: 'absolute', top: '50%', left: '50%',
-          transform: 'translate(-50%, -50%)',
-          width: 16, height: 16,
-          background: 'linear-gradient(135deg, #6366f1, #06b6d4)',
-          borderRadius: '50%',
-          boxShadow: '0 0 16px rgba(99,102,241,0.8)',
-          animation: 'glow-pulse 1.5s ease-in-out infinite',
-        }} />
+       <img className='size-50' src="logo.png" alt="SIET LOGO" />
       </div>
 
       {/* Brand name */}
@@ -88,7 +63,7 @@ export default function Loader({ onDone }) {
         marginBottom: 8,
         fontFamily: "'Inter', sans-serif",
       }}>
-        BLUEPRINT
+        SIET NILOKHERI
       </h1>
 
       {/* Subtitle */}

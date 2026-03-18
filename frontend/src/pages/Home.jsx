@@ -4,21 +4,27 @@ import { HiArrowRight, HiCode, HiLightningBolt, HiShieldCheck } from 'react-icon
 const features = [
   {
     icon: <HiLightningBolt className="text-2xl" />,
-    title: 'Lightning Fast',
+    title: 'Applied Science',
     desc: 'Powered by Vite for instant HMR and blazing fast builds.',
     color: 'from-amber-500 to-orange-500',
   },
   {
     icon: <HiCode className="text-2xl" />,
-    title: 'Modern Stack',
+    title: 'Computer Engineering',
     desc: 'React 19, Tailwind CSS v4, Express 5, MongoDB — all latest.',
     color: 'from-primary to-accent',
   },
   {
     icon: <HiShieldCheck className="text-2xl" />,
-    title: 'Auth Ready',
+    title: 'Electrical Engineering',
     desc: 'JWT authentication, protected routes, and middleware built-in.',
     color: 'from-success to-emerald-400',
+  },
+  {
+    icon: <HiCode className="text-2xl" />,  
+    title: 'Mechanical Engineering',
+    desc: 'React 19, Tailwind CSS v4, Express 5, MongoDB — all latest.',
+    color: 'from-primary to-accent',
   },
 ];
 
@@ -34,25 +40,24 @@ const Home = () => {
         <div className="text-center max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary-light text-sm mb-6">
             <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            Ready-to-use starter template
+            Welcome to our College
           </div>
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight">
-            <span className="text-white">Build faster with</span>
+          <h1 className="text-5xl sm:text-xl lg:text-2xl font-extrabold tracking-tight">
+            <span className="text-white">State Institute of Engineering & Technology, Nilokheri (Karnal)</span>
             <br />
             <span className="bg-gradient-to-r from-primary via-accent to-primary-light bg-clip-text text-transparent">
-              Blueprint
+              
             </span>
           </h1>
           <p className="mt-6 text-lg text-slate-400 max-w-xl mx-auto leading-relaxed">
-            A full-stack development blueprint with authentication, CRUD operations,
-            file uploads, and a beautiful dark UI — ready to clone and start coding.
+            राज्य अभियांत्रिकी एवं प्रौद्योगिकी संस्थान, निलोखेड़ी (करनाल)
           </p>
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               to="/register"
               className="group px-8 py-3.5 rounded-xl bg-gradient-to-r from-primary to-accent text-white font-semibold text-sm hover:opacity-90 transition-all duration-200 flex items-center gap-2"
             >
-              Get Started
+              
               <HiArrowRight className="group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link
@@ -83,7 +88,7 @@ const Home = () => {
       {/* Tech stack */}
       <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
         <div className="text-center">
-          <p className="text-sm text-slate-500 mb-6 uppercase tracking-widest font-medium">Built with</p>
+          <p className="text-sm text-slate-500 mb-6 uppercase tracking-widest font-medium">College Events</p>
           <div className="flex flex-wrap items-center justify-center gap-8 text-slate-500">
             {['React', 'Vite', 'Tailwind', 'Express', 'MongoDB', 'JWT'].map(t => (
               <span key={t} className="text-sm font-medium px-4 py-2 rounded-lg bg-surface-light/50 border border-white/5">

@@ -18,7 +18,7 @@ const Navbar = () => {
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50 p-4 pointer-events-none">
-      <nav className="max-w-7xl mx-auto backdrop-blur-xl bg-surface/80 border border-white/10 rounded-2xl shadow-xl shadow-black/20 pointer-events-auto">
+      <nav className="max-w-7xl mx-auto backdrop-blur-xl bg-red/80 border border-white/10 rounded-2xl shadow-xl shadow-red/20 pointer-events-auto">
         <div className="px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -26,7 +26,7 @@ const Navbar = () => {
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
               <span className="text-white font-bold text-sm">B</span>
             </div>
-            <span className="text-white font-bold text-lg">Blueprint</span>
+            <span className="text-white font-bold text-lg">SIET Nilokheri</span>
           </Link>
 
           {/* Desktop nav */}
