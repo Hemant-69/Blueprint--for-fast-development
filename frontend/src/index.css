@@ -3,11 +3,11 @@
 @theme {
   --font-sans: 'Inter', sans-serif;
   --color-primary: red;
-  --color-primary-light: #white;
+  --color-primary-light: white;
   --color-primary-dark: #4f46e5;
   --color-accent: red;
   --color-accent-light: #22d3ee;
-  --color-surface: white;
+  --color-surface: grey;
   --color-surface-light: #1e293b;
   --color-surface-lighter: #334155;
   --color-surface-card: #1e293b;

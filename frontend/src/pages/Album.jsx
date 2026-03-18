@@ -1,20 +1,29 @@
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef, useCallback, useState } from 'react';
 
-const images = [
-  'https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=800&q=80',
-  'https://images.unsplash.com/photo-1682687982501-1e58f81bef0c?w=800&q=80',
-  'https://images.unsplash.com/photo-1682687220063-4742bd7fd538?w=800&q=80',
-  'https://images.unsplash.com/photo-1682692327050-0cecb4c3c2b1?w=800&q=80',
-  'https://images.unsplash.com/photo-1682687981630-cefe9cd73072?w=800&q=80',
-  'https://images.unsplash.com/photo-1682687219573-3118ee6500df?w=800&q=80',
-  'https://images.unsplash.com/photo-1682687982185-531d09ec56fc?w=800&q=80',
+const allImages = [
+  { url: 'https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=800&q=80', title: 'Campus Building', category: 'Campus' },
+  { url: 'https://images.unsplash.com/photo-1682687982501-1e58f81bef0c?w=800&q=80', title: 'Annual Tech Fest', category: 'Events' },
+  { url: 'https://images.unsplash.com/photo-1682687220063-4742bd7fd538?w=800&q=80', title: 'Mechanical Lab', category: 'Labs' },
+  { url: 'https://images.unsplash.com/photo-1682692327050-0cecb4c3c2b1?w=800&q=80', title: 'Cultural Fest', category: 'Events' },
+  { url: 'https://images.unsplash.com/photo-1682687981630-cefe9cd73072?w=800&q=80', title: 'Library', category: 'Campus' },
+  { url: 'https://images.unsplash.com/photo-1682687219573-3118ee6500df?w=800&q=80', title: 'Workshop Practice', category: 'Labs' },
+  { url: 'https://images.unsplash.com/photo-1682687982185-531d09ec56fc?w=800&q=80', title: 'Student Activities', category: 'Events' },
 ];
+
+const categories = ['All', 'Campus', 'Events', 'Labs'];
 
 const Album = () => {
   const carouselRef = useRef(null);
   const rotationRef = useRef(0);
   const isDraggingRef = useRef(false);
   const startXRef = useRef(0);
+
+  const [activeCategory, setActiveCategory] = useState('All');
+
+  const images =
+    activeCategory === 'All'
+      ? allImages
+      : allImages.filter((img) => img.category === activeCategory);
 
   const updateRotation = useCallback(() => {
     if (carouselRef.current) {
@@ -42,80 +51,83 @@ const Album = () => {
     isDraggingRef.current = false;
   }, []);
 
-  const handleTouchStart = useCallback((e) => {
-    isDraggingRef.current = true;
-    startXRef.current = e.touches[0].clientX - rotationRef.current;
-  }, []);
-
-  const handleTouchMove = useCallback((e) => {
-    if (!isDraggingRef.current) return;
-    rotationRef.current = e.touches[0].clientX - startXRef.current;
-    requestAnimationFrame(updateRotation);
-  }, [updateRotation]);
-
   useEffect(() => {
     window.addEventListener('mouseup', handleMouseUp);
-    window.addEventListener('touchend', handleMouseUp);
-    return () => {
-      window.removeEventListener('mouseup', handleMouseUp);
-      window.removeEventListener('touchend', handleMouseUp);
-    };
+    return () => window.removeEventListener('mouseup', handleMouseUp);
   }, [handleMouseUp]);
 
   return (
     <div
-      className="min-h-[calc(100vh-6rem)] flex flex-col items-center justify-center overflow-hidden bg-surface relative w-full cursor-grab active:cursor-grabbing select-none"
+      className="min-h-screen flex flex-col items-center justify-start pt-24 bg-surface text-center px-4"
       onMouseMove={handleMouseMove}
       onMouseDown={handleMouseDown}
-      onTouchMove={handleTouchMove}
-      onTouchStart={handleTouchStart}
       onWheel={handleWheel}
     >
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--color-primary-dark)_0%,_transparent_70%)] opacity-20 pointer-events-none" />
+      {/* Heading */}
+      <h1 className="text-3xl sm:text-4xl font-bold text-white mb-3">
+        College Gallery
+      </h1>
+      <p className="text-slate-400 mb-6">
+        Explore campus life, events, and facilities
+      </p>
 
-      {/* <div className="text-center absolute top-12 w-full z-10 pointer-events-none">
-        <h1 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-primary-light to-accent bg-clip-text text-transparent mb-4">3D Image Gallery</h1>
-        <p className="text-slate-400 text-lg">Scroll or drag to rotate</p>
-      </div> */}
+      {/* Categories */}
+      <div className="flex gap-3 mb-10 flex-wrap justify-center">
+        {categories.map((cat) => (
+          <button
+            key={cat}
+            onClick={() => {
+              setActiveCategory(cat);
+              rotationRef.current = 0;
+              updateRotation();
+            }}
+            className={`px-4 py-2 rounded-full text-sm transition ${
+              activeCategory === cat
+                ? 'bg-primary text-white'
+                : 'bg-white/5 text-slate-300 hover:bg-white/10'
+            }`}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
 
+      {/* Instruction */}
+      <p className="text-xs text-slate-500 mb-6">
+        Drag or scroll to rotate gallery
+      </p>
+
+      {/* Carousel */}
       <div
-        className="w-[280px] h-[380px] sm:w-[320px] sm:h-[420px] relative mt-20"
+        className="w-[280px] h-[360px] sm:w-[320px] sm:h-[400px] relative"
         style={{ perspective: '1200px' }}
       >
         <div
           ref={carouselRef}
-          className="w-full h-full absolute transition-transform duration-300 ease-out will-change-transform"
-          style={{
-            transformStyle: 'preserve-3d',
-            transform: `rotateY(0deg)`
-          }}
+          className="w-full h-full absolute transition-transform duration-300 ease-out"
+          style={{ transformStyle: 'preserve-3d' }}
         >
           {images.map((img, i) => {
             const angle = (i * 360) / images.length;
             return (
               <div
                 key={i}
-                className="absolute inset-0 rounded-2xl overflow-hidden shadow-2xl shadow-primary/20 hover:shadow-primary/50 transition-all duration-300 group ring-1 ring-white/10 hover:ring-primary/50"
+                className="absolute inset-0 rounded-2xl overflow-hidden shadow-xl"
                 style={{
-                  transform: `rotateY(${angle}deg) translateZ(380px)`,
-                  willChange: 'transform, opacity'
+                  transform: `rotateY(${angle}deg) translateZ(380px)`
                 }}
               >
-                {/* Overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/20 to-transparent opacity-80 group-hover:opacity-40 transition-opacity duration-300 z-10 pointer-events-none" />
-
                 <img
-                  src={img}
-                  alt={`Album frame ${i + 1}`}
-                  className="w-full h-full object-cover pointer-events-none bg-slate-800"
+                  src={img.url}
+                  alt={img.title}
+                  className="w-full h-full object-cover"
                   draggable="false"
-                  loading={i < 3 ? "eager" : "lazy"}
-                  decoding="async"
                 />
 
-                <div className="absolute bottom-0 left-0 w-full p-6 text-white z-20 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none">
-                  <h3 className="text-xl font-bold">Image {i + 1}</h3>
-                  <p className="text-sm text-slate-300 mt-1">Stunning 3D view</p>
+                {/* Caption */}
+                <div className="absolute bottom-0 w-full p-4 bg-black/60 text-white text-left">
+                  <h3 className="text-sm font-semibold">{img.title}</h3>
+                  <p className="text-xs text-slate-300">{img.category}</p>
                 </div>
               </div>
             );
