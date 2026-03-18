@@ -7,7 +7,7 @@ const Footer = () => {
             <div className="w-6 h-6 rounded-md bg-gradient-to-br from-primary to-accent flex items-center justify-center">
               <span className="text-white font-bold text-xs">B</span>
             </div>
-            <span className="text-slate-400 text-sm">Blueprint &copy; {new Date().getFullYear()}</span>
+            <span className="text-slate-400 text-sm">@siet-nilokheri &copy; {new Date().getFullYear()}</span>
           </div>
           <div className="flex items-center gap-6">
             <a href="#" className="text-sm text-slate-500 hover:text-slate-300 transition-colors">Privacy</a>

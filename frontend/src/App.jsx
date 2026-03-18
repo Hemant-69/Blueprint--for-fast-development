@@ -11,6 +11,7 @@ import Dashboard from './pages/Dashboard'
 import Profile from './pages/Profile'
 import Album from './pages/Album'
 import NotFound from './pages/NotFound'
+import Feedback from './pages/Feedback'
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -26,6 +27,7 @@ function App() {
           <Route path="album" element={<Album />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
+          <Route path="feedback" element={<Feedback />} /> 
           <Route path="dashboard" element={
             <ProtectedRoute>
               <Dashboard />

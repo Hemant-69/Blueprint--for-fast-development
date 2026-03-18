@@ -48,9 +48,10 @@ const Navbar = () => {
 
             {/* Logo */}
             <Link to="/" className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+              {/* <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
                 <span className="text-white font-bold">S</span>
-              </div>
+              </div> */}
+              <img className='size-10' src="logo.png" alt="" />
               <div className="leading-tight">
                 <p className="text-white font-bold text-sm">
                   SIET Nilokheri
@@ -70,6 +71,8 @@ const Navbar = () => {
               <NavLink to="/admissions" className={navLinkClass}>Admissions</NavLink>
               <NavLink to="/notices" className={navLinkClass}>Notices</NavLink>
               <NavLink to="/album" className={navLinkClass}>Gallery</NavLink>
+              <NavLink to="/contact" className={navLinkClass}>Contact</NavLink>
+              <NavLink to="/feedback" className={navLinkClass}>Feedback</NavLink>
 
               {/* Cursor Toggle */}
               <button
